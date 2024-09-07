@@ -1,0 +1,122 @@
+<!doctype html>
+<!--suppress ALL -->
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" type="text/css" href="../static/css/styles.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <title>Food List</title>
+
+  <style>
+    h1 {text-align: center;
+    }
+
+    #page-container {
+      position: relative;
+      min-height: 100vh;
+    }
+
+    #content-wrap {
+      padding-bottom: 2.5rem;
+    }
+
+    #footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 2.5rem;
+    }
+  </style>
+
+</head>
+
+<body>
+<!-- Navbar -->
+<div th:replace="fragments/adminNavbar :: navbar"></div>
+<br>
+<br>
+<br>
+
+<div id="page-container">
+  <div id="content-wrap">
+    <div class="container mt-4">
+      <h1>Restaurant Food Details</h1>
+      <br>
+
+      <!-- Search Input -->
+      <div class="mb-3">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search">
+      </div>
+
+      <!-- Data Table -->
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Food ID</th>
+          <th>Food</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="l : ${food}" >
+          <tr>
+            <td th:text="${l.id}"></td>
+            <td th:text="${l.name}"></td>
+            <td>
+              <a th:href="@{/editFood/{id}(id=${l.id})}">Edit</a>
+              <a th:href="@{/deleteFoodList/{id}(id=${l.id})}">Delete</a>
+            </td>
+          </tr>
+        </th:block>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+<!-- JavaScript for search functionality -->
+<script>
+  // Function to filter table rows based on search input
+  function filterTable() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.querySelector("table");
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 1; i < tr.length; i++) {
+      var matchFound = false;
+      for (var j = 0; j < 5; j++) {
+        td = tr[i].getElementsByTagName("td")[j];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            matchFound = true;
+            break; // Exit the inner loop if a match is found
+          }
+        }
+      }
+      if (matchFound) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+  document.getElementById("searchInput").addEventListener("keyup", filterTable);
+  ;
+</script>
+
+  <!-- Footer-->
+  <div th:replace="fragments/footer :: footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script th:src="@{/js/adminNavbar.js}"></script> <!--navbar JS path-->
+  <script type="text/javascript" th:src="@{/js/logout.js}"></script>
+
+</body>
+</html>

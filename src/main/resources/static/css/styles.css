@@ -1,0 +1,43 @@
+#offersCarousel .carousel-item {
+    height: 400px;
+}
+
+#offersCarousel .carousel-item .d-block {
+    height: 100%;
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+}
+
+#aboutUs{
+    text-align: justify;
+}
+
+#restaurantImg {
+    display: block; /* Center the image as a block element */
+    margin-top:10px;
+    margin-left: 100px; /* Adjust margin to move the image slightly left */
+    margin-right: 50px; /* Auto margin on the right to keep the image centered */
+    height: 650px; /* Set the height */
+    width: 550px; /* Set the width */
+}
+
+#testimonialCarousel .card {
+    background-color: #fff;
+    border-radius: 15px;
+    transition: transform 0.2s ease-in-out;
+}
+
+#testimonialCarousel .card:hover {
+    transform: translateY(-10px);
+}
+
+#testimonialCarousel .review-stars {
+    color: #ffd700;
+    font-size: 1.2em;
+}
+
+#testimonialCarousel .carousel-control-prev-icon,
+#testimonialCarousel .carousel-control-next-icon {
+    filter: invert(100%);
+}

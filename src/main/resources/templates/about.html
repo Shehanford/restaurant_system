@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/footer-styles.css}">
+
+    <title>About Us</title>
+</head>
+<body>
+
+<!-- Navbar -->
+<div th:replace="fragments/mainNavbar :: navbar"></div>
+
+<!-- About Info -->
+<section id="aboutUs" class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 id="aboutHeadings" >Our Story</h2>
+            <div class="col-xs-12"><hr></div>
+            <p id="aboutPara" >At ABC Restaurant, our journey began with a simple passion for great food and unforgettable dining experiences.
+                Founded by a group of food enthusiasts who believed in the power of fresh ingredients and authentic flavors,
+                we set out to create a place where every meal is an occasion. From our humble beginnings as a small eatery,
+                we have grown into a beloved dining destination, renowned for our dedication to quality, creativity, and exceptional service.
+                Today, we continue to bring people together over delicious meals, creating memories that last a lifetime.
+            </p>
+            <br>
+            <div>
+                <h2 id="aboutHeadings">Our Mission</h2>
+                <div class="col-xs-12"><hr></div>
+                <p id="Intro" >To be the leading destination for exceptional culinary experiences, where every guest feels at home and
+                    every meal celebrates creativity and flavor. We aim to create a vibrant, welcoming space that fosters connections and
+                    brings people together through a shared love of food. By continually innovating and delivering outstanding service,
+                    we strive to inspire joy and build lasting memories with every visit.
+                </p>
+            </div>
+            <br>
+            <div>
+                <h2 id="aboutHeadings">Our Vission</h2>
+                <div class="col-xs-12"><hr></div>
+                <p id="aboutPara" > To provide our guests with exceptional dining experiences by offering a diverse menu of fresh,
+                    high-quality dishes prepared with passion and served with care. We are committed to fostering a warm and welcoming
+                    environment where our guests can relax, enjoy, and share great moments with friends and family. We strive to continually
+                    innovate and improve our offerings to exceed our guests' expectations and to build lasting relationships within our community.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img id="restaurantImg" src="../Images/image1.jpg" alt="Restaurant Image" class="img-fluid">
+        </div>
+    </div>
+</section>
+
+<!-- Reviews -->
+<section class="testimonials py-5">
+    <div class="container">
+        <h2 id="aboutHeadings" class="text-center mb-5">Client Reviews</h2>
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active text-center">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="card shadow-sm p-4 border-0 rounded">
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-3">
+                                        <p class="mb-0">"Amazing ambiance and fantastic food! The service was top-notch, making it a wonderful dining experience."</p>
+                                    </blockquote>
+                                    <div class="review-stars mb-3">
+                                        ★★★★★
+                                    </div>
+                                    <footer class="blockquote-footer">John Doe</footer>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item text-center">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="card shadow-sm p-4 border-0 rounded">
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-3">
+                                        <p class="mb-0">"The desserts here are divine! The chocolate lava cake was the highlight of my evening. I'll definitely be back for more!"</p>
+                                    </blockquote>
+                                    <div class="review-stars mb-3">
+                                        ★★★★★
+                                    </div>
+                                    <footer class="blockquote-footer">Jane Smith</footer>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item text-center">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="card shadow-sm p-4 border-0 rounded">
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-3">
+                                        <p class="mb-0">"Best restaurant experience ever! The food was delicious, and the atmosphere was warm and inviting."</p>
+                                    </blockquote>
+                                    <div class="review-stars mb-3">
+                                        ★★★★★
+                                    </div>
+                                    <footer class="blockquote-footer">Michael Johnson</footer>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item text-center">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="card shadow-sm p-4 border-0 rounded">
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-3">
+                                        <p class="mb-0">"Loved the variety on the menu! Everything we tried was delicious and beautifully presented."</p>
+                                    </blockquote>
+                                    <div class="review-stars mb-3">
+                                        ★★★★★
+                                    </div>
+                                    <footer class="blockquote-footer">Emily Davis</footer>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item text-center">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="card shadow-sm p-4 border-0 rounded">
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-3">
+                                        <p class="mb-0">"A wonderful place to dine with family and friends. The staff was friendly, and the food was amazing!"</p>
+                                    </blockquote>
+                                    <div class="review-stars mb-3">
+                                        ★★★★★
+                                    </div>
+                                    <footer class="blockquote-footer">Laura Wilson</footer>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/navbar.js}"></script> <!--navbar JS path-->
+</body>
+</html>

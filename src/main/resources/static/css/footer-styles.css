@@ -1,0 +1,34 @@
+footer {
+    background-color: #343a40; /* Dark background for better contrast */
+    color: #ffffff; /* White text color for readability */
+    padding: 20px 0; /* Padding for spacing */
+}
+
+footer h5 {
+    color: #ffc107; /* Bootstrap's warning color for headings */
+    margin-bottom: 15px; /* Space below headings */
+}
+
+footer ul {
+    padding-left: 0; /* Removes default padding */
+    list-style-type: none; /* Removes bullet points */
+}
+
+footer a {
+    color: #ffc107; /* Link color */
+}
+
+footer a:hover {
+    color: #ffffff; /* Link hover color */
+    text-decoration: none; /* Removes underline on hover */
+}
+
+footer .btn-outline-light {
+    border-color: #ffc107; /* Yellow border for the button */
+}
+
+@media (max-width: 768px) {
+    footer .col-md-4 {
+        margin-bottom: 20px; /* Adds spacing between columns on smaller screens */
+    }
+}

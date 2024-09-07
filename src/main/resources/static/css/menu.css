@@ -1,0 +1,43 @@
+#menuNavbar {
+    background-color: #343a40;
+}
+
+#menuContainer, #offersSection {
+    margin-top: 50px;
+}
+
+#menuItems .card, #offersSection .card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#menuItems .card:hover, #offersSection .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#menuSearchForm {
+    max-width: 300px;
+}
+
+#menuFooter {
+    background-color: #343a40;
+    padding: 20px 0;
+}
+
+#menuSearchInput {
+    width: 200px;
+}
+
+.menuItem .card-img-top, #offersSection .card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Adjust carousel controls */
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: #000; /* Optional: Darken the controls to fit theme */
+    border-radius: 50%;
+    padding: 10px;
+}
+

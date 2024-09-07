@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <link rel="stylesheet" th:href="@{/css/footer-styles.css}">
+  <title>Queries</title>
+</head>
+<body>
+
+<!-- Navbar -->
+<div th:replace="fragments/adminNavbar :: navbar"></div>
+
+<div class="container mt-5">
+  <div class="login-container">
+    <h1 class="text-center">Make Queries</h1>
+    <form th:action="@{/queries/save}" method="post" th:object="${queries}">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" th:field="*{firstName}" class="form-control" id="firstName" placeholder="Enter your first name" required minlength="2" maxlength="45" />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="Enter your last name" required minlength="2" maxlength="45" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" th:field="*{email}" class="form-control" id="email" placeholder="Enter your email" required minlength="5" maxlength="45" />
+      </div>
+      <div class="form-group">
+        <label for="queries">Queries</label>
+        <input type="text" th:field="*{queries}" class="form-control" id="queries" placeholder="Enter your Queries" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+  </div>
+</div>
+
+<br>
+<br>
+<br>
+<!-- Footer-->
+<div th:replace="fragments/footer :: footer"></div>
+
+<!-- JavaScript files -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/passwordValidation.js}"></script> <!--password validation JS path-->
+<script th:src="@{/js/navbar.js}"></script> <!--navbar JS path-->
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<!--suppress ALL -->
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../static/css/styles.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/css/app.css}">
+  <title>Restaurant Payment</title>
+
+  <style>
+    #details{
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+<div th:replace="fragments/adminNavbar :: navbar"></div>
+
+
+<br>
+<br>
+<section>
+  <div class="forms">
+    <h3 id="FormHeader">Restaurant Payment</h3>
+    <p id="details">Add Restaurant Payment to Master List</p>
+    <form id="appointment-form" th:action="@{/payment/save}" method="post">
+      <div class="mb-3">
+        <label class="form-label">Select Payment Method</label>
+        <select class="form-control" name="name" required>
+          <option value="Cash" th:selected="${payment.name == 'Cash'}">Cash</option>
+          <option value="Card" th:selected="${payment.name == 'Card'}">Card</option>
+          <option value="Online" th:selected="${payment.name == 'Online'}">Online</option>
+          <option value="Check" th:selected="${payment.name == 'Check'}">Check</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="reset" class="btn btn-secondary">Clear</button>
+    </form>
+  </div>
+</section>
+
+
+<br>
+
+<!-- Footer-->
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/adminNavbar.js}"></script> <!--navbar JS path-->
+<script type="text/javascript" th:src="@{/js/logout.js}"></script>
+</body>
+</html>
