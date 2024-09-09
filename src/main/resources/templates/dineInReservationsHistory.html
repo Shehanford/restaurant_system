@@ -1,0 +1,113 @@
+<!doctype html>
+<!--suppress ALL -->
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dine-In Reservations History</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        h1 {text-align: center;}
+        #page-container {
+            position: relative;
+            min-height: 100vh;
+        }
+        #content-wrap {
+            padding-bottom: 2.5rem;
+        }
+        #footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<div th:replace="fragments/adminNavbar :: navbar"></div>
+<br>
+<br>
+<br>
+<div id="page-container">
+    <div id="content-wrap">
+        <div class="container mt-4">
+            <h1>Dine-In Reservations History</h1>
+            <br>
+            <!-- Search Input -->
+            <div class="mb-3">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search">
+            </div>
+            <!-- Data Table -->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Reservation ID</th>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Number of Customers</th>
+                    <th>Table Number</th>
+                    <th>Location</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="reservation : ${reservations}">
+                    <tr>
+                        <td th:text="${reservation.id}"></td>
+                        <td th:text="${#temporals.format(reservation.reservationDate, 'yyyy-MM-dd')}"></td>
+                        <td th:text="${reservation.startTime}"></td>
+                        <td th:text="${reservation.endTime}"></td>
+                        <td th:text="${reservation.numberOfCustomers}"></td>
+                        <td th:text="${reservation.tableNumber}"></td>
+                        <td th:text="${reservation.location.name}"></td>
+                        <td>
+                            <a th:href="@{/editDineInReservations/{id}(id=${reservation.id})}">Edit</a>
+                            <a th:href="@{/deleteDineInReservations/{id}(id=${reservation.id})}"
+                               onclick="return confirm('Are you sure you want to delete this reservation?')">Delete</a>
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- JavaScript for search functionality -->
+    <script>
+        function filterTable() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.querySelector("table");
+            tr = table.getElementsByTagName("tr");
+            for (i = 1; i < tr.length; i++) {
+                var matchFound = false;
+                for (var j = 0; j < tr[i].cells.length; j++) {
+                    td = tr[i].cells[j];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            matchFound = true;
+                            break;
+                        }
+                    }
+                }
+                tr[i].style.display = matchFound ? "" : "none";
+            }
+        }
+        document.getElementById("searchInput").addEventListener("keyup", filterTable);
+    </script>
+
+    <!-- Footer -->
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/adminNavbar.js}"></script>
+<script type="text/javascript" th:src="@{/js/logout.js}"></script>
+</body>
+</html>
