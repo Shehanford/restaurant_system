@@ -4,46 +4,69 @@ import com.mycompany.model.DineInReservation;
 import com.mycompany.repository.DineInReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.mycompany.ExceptionHandler.TableNotAvailableException;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DineInReservationService {
 
-    @Autowired
-    private DineInReservationRepository reservationrepo;
+    private final DineInReservationRepository reservationRepository;
 
-  /*  public boolean isTableAvailable(String tableNumber, Date date, Date startTime, Date endTime) {
-        List<DineInReservation> reservations = dineInReservationRepository.findByTableAndDate(tableNumber, date, startTime, endTime);
-        return reservations.isEmpty();
+    @Autowired
+    public DineInReservationService(DineInReservationRepository reservationRepository) {
+        this.reservationRepository = reservationRepository;
     }
 
-    public DineInReservation saveReservation(DineInReservation reservation) {
-        if (!isTableAvailable(reservation.getTableNumber(), reservation.getReservationDate(), reservation.getStartTime(), reservation.getEndTime())) {
-            throw new TableNotAvailableException("Table not available for the specified time.");
+    @Transactional
+    public boolean createReservation(DineInReservation reservation) {
+        List<DineInReservation> overlappingReservations = reservationRepository.findOverlappingReservations(
+                reservation.getLocation().getId(),
+                reservation.getReservationDate(),
+                reservation.getStartTime(),
+                reservation.getEndTime(),
+                reservation.getTableNumber()
+        );
+
+        if (overlappingReservations.isEmpty()) {
+            reservationRepository.save(reservation);
+            return true;
         }
-        return dineInReservationRepository.save(reservation);
+        return false;
+    }
+
+    @Transactional
+    public boolean updateReservation(DineInReservation reservation) {
+        List<DineInReservation> overlappingReservations = reservationRepository.findOverlappingReservations(
+                reservation.getLocation().getId(),
+                reservation.getReservationDate(),
+                reservation.getStartTime(),
+                reservation.getEndTime(),
+                reservation.getTableNumber()
+        );
+
+        // Remove the current reservation from the list of overlapping reservations
+        overlappingReservations.removeIf(r -> r.getId().equals(reservation.getId()));
+
+        if (overlappingReservations.isEmpty()) {
+            reservationRepository.save(reservation);
+            return true;
+        }
+        return false;
     }
 
     public List<DineInReservation> getAllReservations() {
-        return dineInReservationRepository.findAll();
-    }*/
-
-    public void save(DineInReservation dineInReservation){
-        reservationrepo.save(dineInReservation);
+        return reservationRepository.findAll();
     }
 
-    public List<DineInReservation> getAllDineInReservation(){
-        return reservationrepo.findAll();
+    public DineInReservation getReservationById(int id) {
+        Optional<DineInReservation> reservation = reservationRepository.findById(id);
+        return reservation.orElse(null);
     }
 
-    public void deleteById(int id){
-        reservationrepo.deleteById(id);
-    }
-
-    public DineInReservation getDineInReservationById(int id){
-        return reservationrepo.findById(id).get();
+    @Transactional
+    public void deleteReservation(int id) {
+        reservationRepository.deleteById(id);
     }
 }
