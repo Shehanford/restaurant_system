@@ -11,5 +11,10 @@ public class ReservationsController {
         return "Reservations";  // This should match the name of your HTML file located in `/src/main/resources/templates/`
     }
 
+     @GetMapping("/reservationsHistory")
+    public String reservationsHistoryPage() {
+        return "reservationsHistory";
+    }
+}
 
 }
