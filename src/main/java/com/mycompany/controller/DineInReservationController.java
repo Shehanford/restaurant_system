@@ -1,97 +1,106 @@
-package com.mycompany.controller;
+package com.mycompany.model;
 
-import com.mycompany.model.DineInReservation;
-import com.mycompany.model.Locations;
-import com.mycompany.service.DineInReservationService;
-import com.mycompany.service.LocationsService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
+import java.time.LocalDate;
 
-import java.util.List;
-import java.util.stream.IntStream;
+@Entity
+@Table(name = "dine_in_reservation")
+public class DineInReservation {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-@Controller
-public class DineInReservationController {
+    @Column(nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate reservationDate;
 
-    private final DineInReservationService reservationService;
-    private final LocationsService locationService;
+    @Column(nullable = false)
+    private String startTime;
 
-    @Autowired
-    public DineInReservationController(DineInReservationService reservationService, LocationsService locationService) {
-        this.reservationService = reservationService;
-        this.locationService = locationService;
+    @Column(nullable = false)
+    private String endTime;
+
+    @Column(nullable = false)
+    private int numberOfCustomers;
+
+    @Column(nullable = false)
+    private Integer tableNumber;
+
+    @ManyToOne
+    @JoinColumn(name = "location_id", nullable = false)
+    private Locations location;
+
+    public static final int MAX_TABLES = 5;
+
+    // Getters and setters
+
+    public Integer getId() {
+        return id;
     }
 
-    @GetMapping("/dineInReservations")
-    public String showReservationForm(Model model) {
-        model.addAttribute("dineInReservation", new DineInReservation());
-        List<Locations> locations = locationService.getAllLocations();
-        model.addAttribute("locations", locations);
-        model.addAttribute("tableNumbers", IntStream.rangeClosed(1, DineInReservation.MAX_TABLES).boxed().toList());
-        return "dineInReservations";
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    @PostMapping("/dineInReservations/save")
-    public String saveReservation(@ModelAttribute DineInReservation dineInReservation, RedirectAttributes redirectAttributes) {
-        try {
-            boolean isCreated = reservationService.createReservation(dineInReservation);
-            if (isCreated) {
-                redirectAttributes.addFlashAttribute("successMessage", "Reservation created successfully!");
-            } else {
-                redirectAttributes.addFlashAttribute("errorMessage", "The selected time slot is not available for this table. Please choose a different time.");
-            }
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while creating the reservation.");
-        }
-        return "redirect:/dineInReservations";
+    public LocalDate getReservationDate() {
+        return reservationDate;
     }
 
-    @GetMapping("/dineInReservationsHistory")
-    public String showReservationHistory(Model model) {
-        List<DineInReservation> reservations = reservationService.getAllReservations();
-        model.addAttribute("reservations", reservations);
-        return "dineInReservationsHistory";
+    public void setReservationDate(LocalDate reservationDate) {
+        this.reservationDate = reservationDate;
     }
 
-    @GetMapping("/editDineInReservations/{id}")
-    public String showEditForm(@PathVariable("id") int id, Model model) {
-        DineInReservation dineInReservation = reservationService.getReservationById(id);
-        if (dineInReservation == null) {
-            return "redirect:/dineInReservationsHistory";
-        }
-        List<Locations> locations = locationService.getAllLocations();
-        model.addAttribute("dineInReservation", dineInReservation);
-        model.addAttribute("locations", locations);
-        model.addAttribute("tableNumbers", IntStream.rangeClosed(1, DineInReservation.MAX_TABLES).boxed().toList());
-        return "dineInReservationsEdit";
+    public String getStartTime() {
+        return startTime;
     }
 
-    @PostMapping("/dineInReservations/update")
-    public String updateReservation(@ModelAttribute DineInReservation dineInReservation, RedirectAttributes redirectAttributes) {
-        try {
-            boolean isUpdated = reservationService.updateReservation(dineInReservation);
-            if (isUpdated) {
-                redirectAttributes.addFlashAttribute("successMessage", "Reservation updated successfully!");
-            } else {
-                redirectAttributes.addFlashAttribute("errorMessage", "The selected time slot is not available for this table. Please choose a different time.");
-            }
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while updating the reservation.");
-        }
-        return "redirect:/dineInReservationsHistory";
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
-    @GetMapping("/deleteDineInReservations/{id}")
-    public String deleteReservation(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
-        try {
-            reservationService.deleteReservation(id);
-            redirectAttributes.addFlashAttribute("successMessage", "Reservation deleted successfully!");
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while deleting the reservation.");
-        }
-        return "redirect:/dineInReservationsHistory";
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public int getNumberOfCustomers() {
+        return numberOfCustomers;
+    }
+
+    public void setNumberOfCustomers(int numberOfCustomers) {
+        this.numberOfCustomers = numberOfCustomers;
+    }
+
+    public Integer getTableNumber() {
+        return tableNumber;
+    }
+
+    public void setTableNumber(Integer tableNumber) {
+        this.tableNumber = tableNumber;
+    }
+
+    public Locations getLocation() {
+        return location;
+    }
+
+    public void setLocation(Locations location) {
+        this.location = location;
+    }
+
+    @Override
+    public String toString() {
+        return "DineInReservation{" +
+                "id=" + id +
+                ", reservationDate=" + reservationDate +
+                ", startTime='" + startTime + '\'' +
+                ", endTime=" + endTime +
+                ", numberOfCustomers=" + numberOfCustomers +
+                ", tableNumber=" + tableNumber +
+                ", location=" + location +
+                '}';
     }
 }
