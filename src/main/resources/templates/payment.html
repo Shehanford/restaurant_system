@@ -31,13 +31,8 @@
     <p id="details">Add Restaurant Payment to Master List</p>
     <form id="appointment-form" th:action="@{/payment/save}" method="post">
       <div class="mb-3">
-        <label class="form-label">Select Payment Method</label>
-        <select class="form-control" name="name" required>
-          <option value="Cash" th:selected="${payment.name == 'Cash'}">Cash</option>
-          <option value="Card" th:selected="${payment.name == 'Card'}">Card</option>
-          <option value="Online" th:selected="${payment.name == 'Online'}">Online</option>
-          <option value="Check" th:selected="${payment.name == 'Check'}">Check</option>
-        </select>
+        <label class="form-label">Enter Payment Method</label>
+        <input type="text" class="form-control" name="name" th:value="${payment.name}" required>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
       <button type="reset" class="btn btn-secondary">Clear</button>
