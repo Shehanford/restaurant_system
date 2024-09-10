@@ -1,5 +1,6 @@
 package com.mycompany.service;
 
+import com.mycompany.model.Food;
 import com.mycompany.model.Locations;
 import com.mycompany.model.Payment;
 import com.mycompany.repository.PaymentRepository;
@@ -17,6 +18,9 @@ public class PaymentService {
 
     public void save(Payment payment) {
         paymentrepo.save(payment);
+    }
+    public List<Payment> getAllPaymentMethods(){
+        return paymentrepo.findAll();
     }
 
 }
