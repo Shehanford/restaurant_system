@@ -22,9 +22,9 @@ public class MainController {
         return "menu";
     }
 
-    /*@GetMapping("/contact")
+    @GetMapping("/contact")
     public String showContactPage() {
         return "contact";
-    }*/
+    }
 
 }
