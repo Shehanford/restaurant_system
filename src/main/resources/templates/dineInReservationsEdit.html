@@ -19,7 +19,7 @@
     <input type="hidden" th:field="*{id}" />
     <div class="mb-3">
       <label for="reservationDate" class="form-label">Date:</label>
-      <input type="date" class="form-control" id="reservationDate" th:field="*{reservationDate}"  value=@Model.reservationDate.ToString("yyyy-MM-dd") required>
+      <input type="date" class="form-control" id="reservationDate" th:field="*{reservationDate}" required>
     </div>
     <div class="mb-3">
       <label for="startTime" class="form-label">Start Time:</label>
