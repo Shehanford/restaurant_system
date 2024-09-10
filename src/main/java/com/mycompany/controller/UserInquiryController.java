@@ -29,15 +29,11 @@ public class UserInquiryController {
     @PostMapping("/userInquiry/save")
     public String saveUserInquiry(@ModelAttribute UserInquiry userInquiry, RedirectAttributes redirectAttributes) {
         try {
-            System.out.println("Received inquiry: " + userInquiry);
-            UserInquiry savedInquiry = userInquiryService.saveUserInquiry(userInquiry);
-            System.out.println("Saved inquiry: " + savedInquiry);
+            userInquiryService.saveUserInquiry(userInquiry);
             redirectAttributes.addFlashAttribute("successMessage", "Your inquiry has been submitted successfully!");
             return "redirect:/userInquiry";
         } catch (Exception e) {
-            e.printStackTrace();  // This will print the full stack trace
-            System.err.println("Error saving user inquiry: " + e.getMessage());
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while submitting your inquiry: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while submitting your inquiry.");
             return "redirect:/userInquiry";
         }
     }

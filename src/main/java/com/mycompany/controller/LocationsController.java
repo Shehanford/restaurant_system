@@ -46,10 +46,4 @@ public class LocationsController {
         return "locationsEdit";
     }
 
-    /*@GetMapping("/api/locations")
-    @ResponseBody
-    public List<Locations> getAllLocationsJson() {
-        return service.getAllLocations();
-    }*/
-
 }

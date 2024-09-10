@@ -1,6 +1,5 @@
 package com.mycompany.controller;
 
-
 import com.mycompany.model.Food;
 import com.mycompany.repository.FoodRepository;
 import com.mycompany.service.FoodService;
@@ -43,10 +42,10 @@ public class FoodController {
         return "redirect:/foodList";
     }
 
-    @RequestMapping("/editFood/{id}")
+    @RequestMapping("/editFoodList/{id}")
     public String editFood(@PathVariable("id") int id, Model model){
         Food food = service.getFoodById(id);
         model.addAttribute("food", food);
-        return "foodEdit";
+        return "FoodEdit";
     }
 }

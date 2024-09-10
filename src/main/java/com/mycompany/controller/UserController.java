@@ -83,31 +83,4 @@ public class UserController {
     }
 
 
-    @GetMapping("/userRegister")
-    public String showUserRegistrationForm(Model model) {
-        User user = new User();
-        model.addAttribute("user", new User());
-        return "userRegister";
-    }
-
-    @PostMapping("/userRegister/save")
-    public String saveUsers(User user) {
-        String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12));
-        user.setPassword(hashedPassword);
-        service.save(user);
-        return "userRegister";
-    }
-
-
-
-    /*@PostMapping("/queries/save")
-    public String saveQueries(Queries queries) {
-        String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12));
-        user.setPassword(hashedPassword);
-        service.save(user);
-        return "userRegister";
-    }*/
-
-
-
 }
