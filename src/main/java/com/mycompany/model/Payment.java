@@ -5,19 +5,14 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "payment")
 public class Payment {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 100,nullable = false,unique = true )
+    @Column(name = "name", length = 100)
     private String name;
 
-
-    public Payment() {
-
-    }
-
+    // Getters and setters
     public Integer getId() {
         return id;
     }
@@ -32,13 +27,5 @@ public class Payment {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Payment{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
     }
 }
