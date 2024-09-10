@@ -1,6 +1,5 @@
 package com.mycompany.repository;
 
-import com.mycompany.model.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
