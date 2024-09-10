@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <link rel="stylesheet" th:href="@{/css/footer-styles.css}">
+  <title>Contact Us</title>
+</head>
+<body>
+
+<!-- Navbar -->
+<div th:replace="fragments/mainNavbar :: navbar"></div>
+
+<!-- Contact Info -->
+<section id="contactUs" class="container my-5">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 id="contactHeadings">Get in Touch</h2>
+      <div class="col-xs-12"><hr></div>
+      <p id="contactPara">We'd love to hear from you! Whether you have a question, comment, or just want to say hello, please don't hesitate to reach out.</p>
+      <br>
+      <form>
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label for="message">Message:</label>
+          <textarea class="form-control" id="message" placeholder="Enter your message"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <img id="restaurantImg" src="path_to_your_image/An_inviting_and_atmospheric_image_of_a_cozy_restau.png" alt="Restaurant Image" class="img-fluid">
+    </div>
+  </div>
+</section>
+
+<!-- Contact Details -->
+<section class="contact-details py-5">
+  <div class="container">
+    <h2 id="contactHeadings" class="text-center mb-5">Contact Details</h2>
+    <div class="row justify-content-center">
+      <div class="col-lg-4">
+        <div class="card shadow-sm p-4 border-0 rounded">
+          <div class="card-body">
+            <h5 class="card-title">Address:</h5>
+            <p class="card-text">12 Main St, Kotahena,Colombo</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card shadow-sm p-4 border-0 rounded">
+          <div class="card-body">
+            <h5 class="card-title">Phone:</h5>
+            <p class="card-text">0701010101</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card shadow-sm p-4 border-0 rounded">
+          <div class="card-body">
+            <h5 class="card-title">Email:</h5>
+            <p class="card-text">info@abcrestaurant.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/navbar.js}"></script> <!--navbar JS path-->
+</body>
+</html>
