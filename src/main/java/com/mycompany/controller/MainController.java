@@ -26,5 +26,4 @@ public class MainController {
     public String showContactPage() {
         return "contact";
     }
-
 }
