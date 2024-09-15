@@ -1,0 +1,50 @@
+<!doctype html>
+<!--suppress ALL -->
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../static/css/styles.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/css/app.css}">
+  <title>Edit Delivery Reservation</title>
+
+  <style>
+    #details{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div th:replace="fragments/adminNavbar :: navbar"></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h1>Edit Delivery Reservation</h1>
+<form th:action="@{/deliveryReservations/update}" th:object="${reservation}" method="post">
+  <input type="hidden" th:field="*{id}" />
+  <p>Date: <input type="date" th:field="*{reservationDate}" /></p>
+  <p>Time: <input type="time" th:field="*{startTime}" /></p>
+  <p>Customers: <input type="number" th:field="*{numberOfCustomers}" /></p>
+  <p>Address: <input type="text" th:field="*{deliveryAddress}" /></p>
+  <p>Phone: <input type="text" th:field="*{contactPhone}" /></p>
+  <p>Food Item: <input type="text" th:field="*{foodItem}" /></p>
+  <p><input type="submit" value="Update" /></p>
+</form>
+
+
+<!-- Footer-->
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/adminNavbar.js}"></script> <!--navbar JS path-->
+<script type="text/javascript" th:src="@{/js/logout.js}"></script>
+</body>
+
+</html>
