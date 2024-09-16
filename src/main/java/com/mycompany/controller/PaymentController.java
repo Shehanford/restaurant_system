@@ -28,7 +28,7 @@ public class PaymentController {
         return "redirect:/adminHome";
     }
 
-    @GetMapping("/paymentList")
+   /* @GetMapping("/paymentList")
     public ModelAndView getAllPayments() {  // Changed method name to getAllPayments for better clarity
         List<Payment> listPayment = PaymentService.getAllPayment();
         return new ModelAndView("paymentList", "payments", listPayment);
@@ -45,5 +45,6 @@ public class PaymentController {
         Payment payment = PaymentService.getPaymentById(id);
         model.addAttribute("payment", payment);
         return "paymentEdit";  // Ensuring case sensitivity and consistency
-    }
+    }*/
+    
 }
