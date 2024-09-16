@@ -1,6 +1,7 @@
 package com.mycompany.controller;
 
 
+
 import com.mycompany.model.Queries;
 import com.mycompany.repository.QueriesRepository;
 import com.mycompany.service.QueriesService;
@@ -30,7 +31,24 @@ public class QueriesController {
         service.save(queries);
         return "redirect:/userHome";
     }
+    @GetMapping("/queriesList")
+    public ModelAndView getAllQueries(){
+        List<Queries> listQueries= service.getAllQueries();
+        return new ModelAndView("queriesList","queries", listQueries);
+    }
 
+    @RequestMapping("/deleteQueriesList/{id}")
+    public String deleteQueriesList(@PathVariable("id") int id){
+        service.deleteById(id);
+        return "redirect:/queriesList";
+    }
+
+    @RequestMapping("/editQueriesList/{id}")
+    public String editQueries(@PathVariable("id") int id, Model model){
+        Queries queries = service.getQueriesById(id);
+        model.addAttribute("queries", queries);
+        return "QueriesEdit";
+    }
 
 
 }

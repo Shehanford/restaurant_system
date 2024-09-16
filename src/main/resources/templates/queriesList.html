@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Queries List</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<!-- Navbar -->
+<div th:replace="fragments/adminNavbar :: navbar"></div>
+
+<div class="container mt-4">
+  <h1 class="text-center">Customer Queries</h1>
+  <div class="row mt-4 mb-4">
+    <div class="col">
+      <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search queries..." class="form-control">
+    </div>
+  </div>
+  <table class="table table-bordered table-hover">
+    <thead class="table-light">
+    <tr>
+      <th>Query ID</th>
+      <th>Email</th>
+      <th>Query</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="query : ${queries}">
+      <td th:text="${query.id}">1</td>
+      <td th:text="${query.email}">example@example.com</td>
+      <td th:text="${query.queries}">What are your hours?</td>
+      <td>
+        <a th:href="@{'/editQuery/' + ${query.id}}" class="btn btn-primary">Edit</a>
+        <a th:href="@{'/deleteQuery/' + ${query.id}}" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/passwordValidation.js}"></script>
+<script th:src="@{/js/navbar.js}"></script>
+
+<script>
+  function filterTable() {
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.querySelector("table");
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 1; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[1]; // Index 1 is the email column
+      if (td) {
+        if (td.textContent.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>
+
+</body>
+</html>
