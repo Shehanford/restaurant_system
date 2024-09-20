@@ -8,7 +8,7 @@ public class UserInquiry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(nullable = false)
     private String email;
@@ -17,11 +17,11 @@ public class UserInquiry {
     private String query;
 
     // Getters and setters
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
