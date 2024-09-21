@@ -22,10 +22,10 @@ public class UserRepositoryTest {
     @Test
     public void testAddUser(){
         User user = new User();
-        user.setFirstName("Anne");
+        user.setFirstName("Sachini");
         user.setLastName("Fernando");
-        user.setEmail("annef@gmail.com");
-        user.setPassword("anne");
+        user.setEmail("sachinif@gmail.com");
+        user.setPassword("1234");
 
         User saveUser = userRepository.save(user);
         Assertions.assertThat(saveUser.getId()).isGreaterThan(0);
@@ -43,20 +43,20 @@ public class UserRepositoryTest {
 
     @Test
     public void testUpdateUser(){
-        Integer userid = 3;
+        Integer userid = 15;
         Optional <User> optionalUser = userRepository.findById(userid);
 
         User user = optionalUser.get();
-        user.setLastName("Fernando");
+        user.setLastName("Silva");
         userRepository.save(user);
 
         User updateUser = userRepository.findById(userid).get();
-        Assertions.assertThat(updateUser.getLastName()).isEqualTo("Fernando");
+        Assertions.assertThat(updateUser.getLastName()).isEqualTo("Silva");
     }
 
     @Test
     public void testDeleteUser(){
-        Integer userid = 8;
+        Integer userid = 20;
         userRepository.deleteById(userid);
 
         Optional <User> optionalUser = userRepository.findById(userid);

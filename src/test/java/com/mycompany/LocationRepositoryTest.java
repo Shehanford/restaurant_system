@@ -25,7 +25,7 @@ public class LocationRepositoryTest {
     @Test
     public void testAddLocation(){
         Locations locations = new Locations();
-        locations.setName("Wattala");
+        locations.setName("Nuwara Eliya");
 
         Locations savelocations = locationsRepository.save(locations);
         Assertions.assertThat(savelocations.getId()).isGreaterThan(0);
@@ -48,16 +48,16 @@ public class LocationRepositoryTest {
         Optional <Locations> optionalLocations = locationsRepository.findById(locationid);
 
         Locations locations = optionalLocations.get();
-        locations.setName("Matara");
+        locations.setName("Galle");
         locationsRepository.save(locations);
 
         Locations updateLocations = locationsRepository.findById(locationid).get();
-        Assertions.assertThat(updateLocations.getName()).isEqualTo("Matara");
+        Assertions.assertThat(updateLocations.getName()).isEqualTo("Galle");
     }
 
     @Test
     public void testDeleteLocations(){
-        Integer locationid = 6;
+        Integer locationid = 11;
         locationsRepository.deleteById(locationid);
 
         Optional <Locations> optionalLocations = locationsRepository.findById(locationid);
