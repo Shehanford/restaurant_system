@@ -18,7 +18,7 @@ public class PaymentController {
 
     @GetMapping("/payment")
     public String showPaymentPage(Model model) {
-        model.addAttribute("payment", new Payment());  // Simplified instantiation directly in the attribute
+        model.addAttribute("payment", new Payment());
         return "payment";
     }
 
